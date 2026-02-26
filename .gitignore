@@ -1,0 +1,22 @@
+# Java
+*.class
+out/
+
+# OS/IDEs
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Project logs/data
+highscore.txt
+sources.txt
+sourcelist.txt
+sourceq.txt
+*.log
+
+# Temp
+/tmp/
