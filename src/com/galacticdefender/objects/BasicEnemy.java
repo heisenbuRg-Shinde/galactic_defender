@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 
 /**
  * Slow melee-range enemy that walks toward the player.
- * Low speed, average health. Demonstrates concrete inheritance from Enemy.
  */
 public class BasicEnemy extends Enemy {
 
@@ -17,25 +16,31 @@ public class BasicEnemy extends Enemy {
 
     public BasicEnemy(float x, float y) {
         super(x, y, W, H, 50, 15, 100, 3.0f);
+
         if (cachedSprite == null) {
             BufferedImage raw = ResourceLoader.loadImage(Constants.IMG_ENEMY_BASIC);
-            cachedSprite = (raw != null) ? ResourceLoader.scaleImage(raw, W, H) : null;
+
+        if (raw != null) {
+            cachedSprite = ResourceLoader.scaleImage(raw, W, H);
         }
+        }
+
         this.sprite = cachedSprite;
     }
 
     @Override
     protected void move(float dt, Player player) {
-        if (player == null)
-            return;
+        if (player == null) return;
+
         float px = player.getX() + player.getWidth() / 2f;
         float ex = x + width / 2f;
         float dist = Math.abs(px - ex);
+
         if (dist > width + 15) {
             velX = (px < ex) ? -SPEED : SPEED;
             facingRight = px > ex;
         } else {
-            velX = 0; // stop when very close (will deal contact damage)
+            velX = 0;
         }
     }
 }
